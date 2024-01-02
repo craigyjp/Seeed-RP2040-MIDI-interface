@@ -1,5 +1,9 @@
 # Seeed-RP2040-MIDI-interface
 
+This is taken from the MIDI pico adaptor by Rene Stange and modified to run on a Seeed RP2040 and the makefile updated to compile with the latest Pico-SDK and Visual Studio.
+
+https://github.com/rsta2/pico/tree/main/midi_adapter
+
 This program is a USB to serial MIDI adapter. It connects to an USB host via the
 USB connector of the Seeed RP2040 on one side and to a MIDI device with
 serial interface via GP0 (UART TX)/GP1 (RX) on the other side. MIDI
