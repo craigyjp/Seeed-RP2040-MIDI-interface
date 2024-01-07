@@ -40,6 +40,8 @@
 //--------------------------------------------------------------------+
 
 //#define IGNORE_MIDI_CC
+#define LED_PIN_GREEN 26
+#define LED_PIN_RED 27
 
 static bool led_usb_state = false;
 static bool led_uart_state = false;
@@ -59,6 +61,14 @@ int main(void)
   // Set the GPIO pin mux to the UART - 0 is TX, 1 is RX
   gpio_set_function(0, GPIO_FUNC_UART);
   gpio_set_function(1, GPIO_FUNC_UART);
+
+  gpio_init(LED_PIN_GREEN);
+  gpio_set_dir(LED_PIN_GREEN, GPIO_OUT);
+  gpio_put(LED_PIN_GREEN, 1);
+
+  gpio_init(LED_PIN_RED);
+  gpio_set_dir(LED_PIN_RED, GPIO_OUT);
+  gpio_put(LED_PIN_RED, 1);
 
   while (1)
   {
@@ -196,14 +206,25 @@ void led_task(void)
 {
   static uint32_t last_active_ms = 0;
 
-  if (led_usb_state || led_uart_state)
+  if (led_usb_state)
   {
-    board_led_write(true);
+    gpio_put(LED_PIN_GREEN, 0);
 
     last_active_ms = board_millis();
   }
   else if (board_millis() - last_active_ms > 10)
   {
-    board_led_write(false);
+    gpio_put(LED_PIN_GREEN, 1);
+  }
+
+  if (led_uart_state)
+  {
+    gpio_put(LED_PIN_RED, 0);
+
+    last_active_ms = board_millis();
+  }
+  else if (board_millis() - last_active_ms > 10)
+  {
+    gpio_put(LED_PIN_RED, 1);
   }
 }
