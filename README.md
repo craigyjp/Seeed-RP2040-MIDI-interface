@@ -11,7 +11,7 @@ messages/events, received on one side, will be converted and send out on the
 other side. The dual LED flashes, when MIDI data is
 exchanged.
 
-![Synth](schematics/synth.jpg)
+![Synth](schematic/synth.jpg)
 
 This unit can be used as a connection to a Raspberry PI which can only provide USB Host connections. 
 Connecting this device to a Pi will give you standard DIN midi input and putput
