@@ -20,6 +20,8 @@ connected!
 The MIDI adapter receives USB MIDI events from all virtual MIDI cables, and it
 sends USB MIDI data to the virtual MIDI cable zero.
 
+I used a bicolour LED to show activity, green for USB and red for UART, you can of course make these into seperate LEDs or just ignore them.
+
 If you enable the #define IGNORE_MIDI_CC in the file main.c, the MIDI control
 change and program change events, which have be received from the USB host, will
 be filtered out and ignored.
